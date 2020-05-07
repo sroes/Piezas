@@ -62,14 +62,10 @@ Piece Piezas::dropPiece(int column)
 
 
 
-    if (column < 0)
-    {
-        return Invalid;
-    }
-    if(column > 3)
-    {
-        return Invalid;
-    }
+  if (column < 0 || column > 3) 
+  {
+    return Invalid;
+  }
     Piece drop = Blank;
     for(unsigned int i = 0; i < board.size(); i++)
     {
