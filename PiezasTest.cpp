@@ -33,6 +33,7 @@ TEST(PiezasTest, X_check){
 
 TEST(PiezasTest, O_check){
   Piezas game;
+
 	ASSERT_EQ(game.dropPiece(2), O);
 }
 
