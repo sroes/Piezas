@@ -25,16 +25,16 @@ TEST(PiezasTest, startofgame)
 	ASSERT_EQ(game.pieceAt(0, 2), Blank);
 }
 
-TEST(PiezasTest, row_negative)
-{
+TEST(PiezasTest, X_check){
   Piezas game;
-    ASSERT_EQ(game.pieceAt(-2, 0), Invalid);
+	ASSERT_EQ(game.dropPiece(2), X);
 }
 
-TEST(PiezasTest, row_positive)
-{
+
+TEST(PiezasTest, O_check){
   Piezas game;
-    ASSERT_EQ(game.pieceAt(2, 0), Invalid);
+  board.dropPiece(1);
+	ASSERT_EQ(game.dropPiece(2), O);
 }
 
 TEST(PiezasTest, col_negative) {
