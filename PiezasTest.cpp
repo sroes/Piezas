@@ -41,8 +41,12 @@ TEST(PiezasTest, col_negative) {
   Piezas game;
   ASSERT_EQ(game.pieceAt(0, -2), Invalid);
 }
+TEST(PiezasTest, row_negative) {
+  Piezas game;
+  ASSERT_EQ(game.pieceAt(-2, 0), Invalid);
+}
 
-TEST(PiezasTest, col_positive) {
+TEST(PiezasTest, col_positive_out) {
   Piezas game;
   ASSERT_EQ(game.pieceAt(0, 4), Invalid);
 }
