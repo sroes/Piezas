@@ -118,9 +118,9 @@ Piece Piezas::gameState()
 
     
 
-    for(int i=0; i< board.size(); i++)
+    for(unsigned int i=0; i< board.size(); i++)
     {
-        for(int j=0; j<board.size(); j++)
+        for(unsigned int j=0; j<board.size(); j++)
         {
            if(board[i][j] == Blank)
            {
@@ -144,9 +144,9 @@ Piece Piezas::gameState()
         }
     }
 
-    for(int i=0; i< board.size(); i++)
+    for(unsigned int i=0; i< board.size(); i++)
     {
-        for(int j=0; j<board.size(); j++)
+        for(unsigned int j=0; j<board.size(); j++)
         {
            if(board[j][i] == Blank)
            {
