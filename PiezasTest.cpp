@@ -22,7 +22,7 @@ TEST(PiezasTest, sanityCheck)
 TEST(PiezasTest, startofgame)
 {
   Piezas game;
-	ASSERT_EQ(game.pieceAt(0, 2), Invalid);
+	ASSERT_EQ(game.pieceAt(0, 2), Blank);
 }
 
 TEST(PiezasTest, row_negative)
