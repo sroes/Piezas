@@ -22,6 +22,16 @@
 **/
 Piezas::Piezas()
 {
+    turn = X;
+    board.resize(4, std::vector<Piece>(3));
+    for(int i=0; i<3; i++)
+    {
+      for(int j=0; j<4; j++)
+      {
+         board[i][j] = Blank;
+      }
+    }
+    
 }
 
 /**
@@ -30,6 +40,13 @@ Piezas::Piezas()
 **/
 void Piezas::reset()
 {
+    for(int i=0; i<3; i++)
+    {
+      for(int j=0; j<4; j++)
+      {
+         board[i][j] = Blank;
+      }
+    }
 }
 
 /**
@@ -42,6 +59,28 @@ void Piezas::reset()
 **/ 
 Piece Piezas::dropPiece(int column)
 {
+
+
+    Piece drop = Blank;
+    if (column < 0)
+    {
+        return Invalid;
+    }
+    if(column > 3)
+    {
+        return Invalid;
+    }
+
+    for(int i = 0; i < board.size(); i++)
+    {
+      if(board[i][column]==Blank)
+      {
+         board[i][column] = turn;
+         drop = turn;
+         return drop;
+      }
+     
+    }
     return Blank;
 }
 
@@ -51,7 +90,16 @@ Piece Piezas::dropPiece(int column)
 **/
 Piece Piezas::pieceAt(int row, int column)
 {
-    return Blank;
+  if(row < 0 || row > 2)
+  {
+      return Invalid;
+  }
+  if(column < 0 || column > 3)
+  {
+      return Invalid;
+  }
+
+    return board[row][column];
 }
 
 /**
@@ -65,5 +113,73 @@ Piece Piezas::pieceAt(int row, int column)
 **/
 Piece Piezas::gameState()
 {
-    return Blank;
+   int valueX = 0, valueO = 0, Total = 0;
+
+
+    
+
+    for(int i=0; i< board.size(); i++)
+    {
+        for(int j=0; j<board.size(); j++)
+        {
+           if(board[i][j] == Blank)
+           {
+              return Invalid;
+           }
+           if(board[i][j] == X && board[i][j] == O)
+           {
+               valueO++;
+               valueX++;
+               Total = 0;
+           }
+           if(board[i][j]==X && Total>valueX)
+           {
+               valueX = Total;
+           }
+           if(board[i][j]==O && Total>valueO)
+           {
+               valueO = Total;
+           }
+
+        }
+    }
+
+    for(int i=0; i< board.size(); i++)
+    {
+        for(int j=0; j<board.size(); j++)
+        {
+           if(board[j][i] == Blank)
+           {
+              return Invalid;
+           }
+           if(board[j][i]== X && board[j][i] == O)
+           {
+               valueO++;
+               valueX++;
+               Total = 0;
+           }
+           if(board[j][i]==X && Total>valueX)
+           {
+               valueX = Total;
+           }
+           if(board[i][j]==O && Total>valueO)
+           {
+               valueO = Total;
+           }
+
+        }
+    }
+  
+    if(valueX == valueO)
+    {
+        return Blank;
+    }
+    if(valueX > valueO) 
+    {
+        return X;
+    }
+   return O;
+  
 }
+  
+
