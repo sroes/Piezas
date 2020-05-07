@@ -47,25 +47,11 @@ TEST(PiezasTest, col_positive) {
   ASSERT_EQ(game.pieceAt(0, 4), Invalid);
 }
 
-TEST(PiezasTest, drop_piece_x) {
+TEST(PiezasTest, bad_drop){
   Piezas game;
-  ASSERT_EQ(game.dropPiece(4), X);
+	ASSERT_EQ(game.dropPiece(5), Invalid);
 }
 
-TEST(PiezasTest, drop_piece_O) {
-  Piezas game;
-  ASSERT_EQ(game.dropPiece(4), O);
-}
-
-TEST(PiezasTest, drop_piece_x_nagative) {
-  Piezas game;
-  ASSERT_EQ(game.dropPiece(-4), X);
-}
-
-TEST(PiezasTest, drop_piece_o_nagative) {
-  Piezas game;
-  ASSERT_EQ(game.dropPiece(-4), O);
-}
 
 ///////
 
