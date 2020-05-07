@@ -61,7 +61,7 @@ Piece Piezas::dropPiece(int column)
 {
 
 
-    Piece drop = Blank;
+
     if (column < 0)
     {
         return Invalid;
@@ -70,8 +70,8 @@ Piece Piezas::dropPiece(int column)
     {
         return Invalid;
     }
-
-    for(int i = 0; i < board.size(); i++)
+    Piece drop = Blank;
+    for(unsigned int i = 0; i < board.size(); i++)
     {
       if(board[i][column]==Blank)
       {
