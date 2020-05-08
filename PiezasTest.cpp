@@ -76,21 +76,21 @@ TEST(PiezasTest, afterreset){
 }
 
 
-TEST(PiezasTest, Tie){
-  Piezas board;
-  board.dropPiece(0);
-	board.dropPiece(1);
-	board.dropPiece(2);
-	board.dropPiece(3);
-	board.dropPiece(3);
-	board.dropPiece(2);
-	board.dropPiece(1);
-	board.dropPiece(0);
-	board.dropPiece(0);
-	board.dropPiece(1);
-	board.dropPiece(2);
-	board.dropPiece(3);
-	ASSERT_EQ(board.gameState(), Blank);
+TEST(PiezasTest, game_is_tied){
+  Piezas game;
+    game.dropPiece(3);
+	game.dropPiece(2);
+	game.dropPiece(1);
+	game.dropPiece(1);
+	game.dropPiece(2);
+	game.dropPiece(3);
+	game.dropPiece(0);
+	game.dropPiece(1);
+	game.dropPiece(1);
+	game.dropPiece(3);
+	game.dropPiece(2);
+	game.dropPiece(1);
+	ASSERT_EQ(game.gameState(), Blank);
 }
 
 
