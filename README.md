@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/sroes/Piezas.svg?branch=master)](https://travis-ci.org/sroes/Piezas)
+[![Coverage Status](https://coveralls.io/repos/github/sroes/Piezas/badge.svg?branch=master)](https://coveralls.io/github/sroes/Piezas?branch=master)
+
 # Piezas
 
 ## Associated Enumerated Types
