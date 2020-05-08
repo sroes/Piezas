@@ -68,30 +68,13 @@ TEST(PiezasTest, piece_column){
 	ASSERT_EQ(game.dropPiece(0), Blank);
 }
 
-TEST(PiezasTest, afterreset){
+TEST(PiezasTest, game_reset){
   Piezas game;
   game.dropPiece(0);
   game.reset();
 	ASSERT_EQ(game.pieceAt(0,0), Blank);
 }
 
-
-TEST(PiezasTest, game_is_tied){
-  Piezas game;
-    game.dropPiece(3);
-	game.dropPiece(2);
-	game.dropPiece(1);
-	game.dropPiece(1);
-	game.dropPiece(2);
-	game.dropPiece(3);
-	game.dropPiece(0);
-	game.dropPiece(1);
-	game.dropPiece(1);
-	game.dropPiece(3);
-	game.dropPiece(2);
-	game.dropPiece(1);
-	ASSERT_EQ(game.gameState(), Blank);
-}
 
 
 
@@ -111,36 +94,75 @@ TEST(PiezasTest, game_not_over){
 	ASSERT_EQ(game.gameState(), Invalid);
 }
 
-TEST(PiezasTest, X_wins_game){
-  Piezas game;
-    game.dropPiece(1);
-	game.dropPiece(2);
-	game.dropPiece(3);
-	game.dropPiece(1);
-	game.dropPiece(2);
-	game.dropPiece(2);
-	game.dropPiece(0);
-	game.dropPiece(1);
-	game.dropPiece(3);
-	game.dropPiece(3);
-	game.dropPiece(0);
-	game.dropPiece(0);
-	ASSERT_EQ(game.gameState(), X);
+TEST(PiezasTest, XWins){
+  Piezas board;
+  board.dropPiece(1);
+	board.dropPiece(2);
+	board.dropPiece(3);
+	board.dropPiece(1);
+	board.dropPiece(2);
+	board.dropPiece(2);
+	board.dropPiece(0);
+	board.dropPiece(1);
+	board.dropPiece(3);
+	board.dropPiece(3);
+	board.dropPiece(0);
+	board.dropPiece(0);
+	ASSERT_EQ(board.gameState(), X);
 }
 
-TEST(PiezasTest, O_wins_game){
-  Piezas game;
-    game.dropPiece(0);
-	game.dropPiece(0);
-	game.dropPiece(1);
-	game.dropPiece(1);
-	game.dropPiece(2);
-	game.dropPiece(3);
-	game.dropPiece(2);
-	game.dropPiece(2);
-	game.dropPiece(1);
-	game.dropPiece(1);
-	game.dropPiece(0);
-	game.dropPiece(0);
-	ASSERT_EQ(game.gameState(), O);
+
+// X O X X
+// O X X O
+// X O O O
+// 11 12 7 9
+// 10  3 5 8
+// 1   2 4 6
+
+
+TEST(PiezasTest, OWins){
+  Piezas board;
+  board.dropPiece(0);
+	board.dropPiece(1);
+	board.dropPiece(1);
+	board.dropPiece(2);
+	board.dropPiece(2);
+	board.dropPiece(3);
+	board.dropPiece(2);
+	board.dropPiece(3);
+	board.dropPiece(3);
+	board.dropPiece(0);
+	board.dropPiece(0);
+	board.dropPiece(1);
+	ASSERT_EQ(board.gameState(), O);
+}
+
+// X O X X
+// O X O O
+// // O X O X
+// X O X O
+// O X O X
+// X O X O
+//
+// 9 10 11 12
+// 8  7 6 5
+// 1   2 3 4
+
+
+
+TEST(PiezasTest, Tie){
+  Piezas board;
+  board.dropPiece(0);
+	board.dropPiece(1);
+	board.dropPiece(2);
+	board.dropPiece(3);
+	board.dropPiece(3);
+	board.dropPiece(2);
+	board.dropPiece(1);
+	board.dropPiece(0);
+	board.dropPiece(0);
+	board.dropPiece(1);
+	board.dropPiece(2);
+	board.dropPiece(3);
+	ASSERT_EQ(board.gameState(), Blank);
 }
