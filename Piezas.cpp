@@ -107,34 +107,74 @@ Piece Piezas::pieceAt(int row, int column)
  * or horizontally. If both X's and O's have the same max number of pieces in a
  * line, it is a tie.
 **/
+Piece Piezas::gameState()
+{
+   int valueX = 0, valueO = 0, Total = 0;
 
-Piece Piezas::gameState(){
-  for(int i=0; i<3; i++){
-    for(int j=0; j<4; j++){
-      if(board[i][j] == Blank) return Invalid;
-    }
-  }
-  int numX = 0, numO = 0, runningTotal = 0;
-  for(int i=0; i<3; i++){
-    for(int j=0; j<3; j++){
-      if(board[i][j]==board[i][j+1]){
-        runningTotal++;
-        if(board[i][j]==X && runningTotal>numX) numX = runningTotal;
-        else if(board[i][j]==O && runningTotal>numO) numO = runningTotal;
-      }else runningTotal = 0;
-    }
-  }
 
-  for(int j=0; j<4; j++){
-    for(int i=0; i<2; i++){
-      if(board[i][j]==board[i+1][j]){
-        runningTotal++;
-        if(board[i][j]==X && runningTotal>numX) numX = runningTotal;
-        else if(board[i][j]==O && runningTotal>numO) numO = runningTotal;
-      }else runningTotal = 0;
+
+    for(unsigned int i=0; i< board.size(); i++)
+    {
+        for(unsigned int j=0; j<board.size(); j++)
+        {
+           if(board[i][j] == Blank)
+           {
+              return Invalid;
+           }
+           if(board[i][j] == X && board[i][j] == O)
+           {
+               valueO++;
+               valueX++;
+               Total = 0;
+           }
+           if(board[i][j]==X && Total>valueX)
+           {
+               valueX = Total;
+           }
+           if(board[i][j]==O && Total>valueO)
+           {
+               valueO = Total;
+           }
+
+        }
     }
-  }
-  if(numX == numO) return Blank;
-  else if(numX>numO) return X;
-  else return O;
+
+    for(unsigned int i=0; i< board.size(); i++)
+    {
+        for(unsigned int j=0; j<board.size(); j++)
+        {
+           if(board[j][i] == Blank)
+           {
+              return Invalid;
+           }
+           if(board[j][i]== X && board[j][i] == O)
+           {
+               valueO++;
+               valueX++;
+               Total++;
+           }
+           if(Total>valueX)
+           {
+               valueX = Total;
+           }
+           if(Total>valueO)
+           {
+               valueO = Total;
+           }
+
+        }
+    }
+  
+    if(valueX == valueO)
+    {
+        return Blank;
+    }
+    if(valueX > valueO) 
+    {
+        return X;
+    }
+   return O;
+  
 }
+  
+
