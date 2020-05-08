@@ -112,7 +112,6 @@ Piece Piezas::gameState()
    int valueX = 0, valueO = 0, Total = 0;
 
 
-    
 
     for(unsigned int i=0; i< board.size(); i++)
     {
@@ -152,13 +151,13 @@ Piece Piezas::gameState()
            {
                valueO++;
                valueX++;
-               Total = 0;
+               Total++;
            }
-           if(board[j][i]==X && Total>valueX)
+           if(Total>valueX)
            {
                valueX = Total;
            }
-           if(board[i][j]==O && Total>valueO)
+           if(Total>valueO)
            {
                valueO = Total;
            }
